@@ -9,21 +9,21 @@ using namespace std;
 
 class Solution{
   public:
-    int longestKSubstr(string s, int k) {
+    int longestKSubstr(string s, int k) {    // ---> Variable sized sliding window
         unordered_map<char, int> mp;
         int i=0, j=0;
         int n = s.length();
         int max1 = INT_MIN;
         while(j < n){
             mp[s[j]]++;
-            if(mp.size() < k){
+            if(mp.size() < k){            // Condition - 1
                j++;
             }
-            else if(mp.size() == k){
+            else if(mp.size() == k){      // Condition - 2
                max1 = max(max1, j-i+1);
                j++;
             }
-            else if(mp.size() > k){
+            else if(mp.size() > k){       // Condition - 3
                 while(mp.size() > k){
                     mp[s[i]]--;
                     if(mp[s[i]] == 0){
